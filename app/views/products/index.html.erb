@@ -1,12 +1,11 @@
-<% first_product = Product.first %>
-<% cheap_product = Product.where('price < 20').first %>
-<% lessthantwenty = Product.where('price < 20').count %>
-<% product_count = Product.count %>
+<% lots_of_products = Product.includes(:user).all %>
 
-<h1>Products</h1>
-<h2><%= first_product.name %></h2>
-<h4>Price:</h4> $ <%= first_product.price %>
-<h4>Sold by:</h4> <%= first_product.user.name %>
-
-<p>There are a total of <%= product_count %> items.</p>
-<p>There are a total of <%= lessthantwenty %> items that are less than $20.
+<ul>
+	<% lots_of_products.each do |product| %>
+	<li>
+		<b>Product name:</b> <%= product.name %> 
+		<br/><b>Price:</b> $ <%= product.price %>
+		<br/><b>Sold By:</b> <%= product.user.name %>
+	</li><br/>
+	<% end %>
+</ul>
