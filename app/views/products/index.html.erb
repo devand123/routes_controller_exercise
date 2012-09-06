@@ -1,5 +1,7 @@
 <% lots_of_products = Product.includes(:user).all %>
 
+<p>There is a total of <%= Product.count %> products.</p>
+
 <ul>
 	<% lots_of_products.each do |product| %>
 	<li>
